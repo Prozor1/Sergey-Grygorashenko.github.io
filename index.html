@@ -498,6 +498,7 @@
                         <i class="fas fa-cog"></i> Навыки
                     </a>
                 </li>
+                <!-- ВОТ ПУНКТ ПОРТФОЛИО -->
                 <li class="nav-item">
                     <a href="#portfolio" class="nav-link" onclick="showSection('portfolio')">
                         <i class="fas fa-briefcase"></i> Портфолио
@@ -806,31 +807,40 @@
     </main>
 
     <!-- JavaScript -->
-    <script>
+  <script>
         // Функция переключения секций
         function showSection(sectionName) {
-            // Скрыть все секции
+            // 1. Скрываем все секции
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Убрать подсветку меню
+            
+            // 2. Убираем синее подчеркивание со всех пунктов меню
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Показать нужную секцию
+            // 3. Показываем нужную секцию
             const targetSection = document.getElementById(sectionName);
-            if (targetSection) targetSection.classList.add('active');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
             
-            // Подсветить пункт меню
-            const targetNavLink = document.querySelector(`[href="#${sectionName}"]`);
-            if (targetNavLink) targetNavLink.classList.add('active');
+            // 4. Подсвечиваем пункт МЕНЮ (исправлено)
+            // Ищем только элементы с классом .nav-link, чтобы не путать с кнопками в шапке
+            const targetNavLink = document.querySelector(`.nav-link[href="#${sectionName}"]`);
+            if (targetNavLink) {
+                targetNavLink.classList.add('active');
+            }
             
-            // Скролл вверх
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // 5. Плавный скролл наверх
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
         
-        // Обработка кликов по меню
+        // Обработка кликов по всем ссылкам
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -839,11 +849,16 @@
             });
         });
         
-        // Заглушка отправки формы
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Форма отправлена! (Это демо-версия)');
-        });
+        // Заглушка для формы
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Форма отправлена! (Это демо-версия)');
+            });
+        }
     </script>
 </body>
 </html>
+
+
