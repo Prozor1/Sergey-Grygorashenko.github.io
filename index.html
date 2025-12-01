@@ -1,11 +1,13 @@
-ео
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Григорашенко Сергей - Junior QA Engineer</title>
+    <!-- Иконки FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>Тестирую формы регистрации и авторизации "в прямом эфире", демонстрирую процесс
+    <style>
+        /* === Сброс стилей и базовые настройки === */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +21,7 @@
             background: #f8f9fa;
         }
 
-        /* Header */
+        /* === Header (Шапка) === */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -66,8 +68,6 @@
             font-weight: 700;
         }
 
-
-
         .header .subtitle {
             font-size: 1.2rem;
             margin-bottom: 20px;
@@ -77,6 +77,7 @@
             margin-right: auto;
         }
 
+        /* Кнопки */
         .cta-buttons {
             display: flex;
             gap: 20px;
@@ -119,7 +120,7 @@
             transform: translateY(-2px);
         }
 
-        /* Navigation */
+        /* === Navigation (Меню) === */
         .nav {
             background: white;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
@@ -142,10 +143,6 @@
             gap: 0;
         }
 
-        .nav-item {
-            position: relative;
-        }
-
         .nav-link {
             display: block;
             padding: 20px 25px;
@@ -162,14 +159,15 @@
             background: rgba(102, 126, 234, 0.05);
         }
 
-        /* Sections */
+        /* === Sections (Секции) === */
         .section {
             padding: 60px 0;
-            display: none;
+            display: none; /* Скрыты по умолчанию */
         }
 
         .section.active {
-            display: block;
+            display: block; /* Показываем активную */
+            animation: fadeInUp 0.6s ease;
         }
 
         .section-title {
@@ -192,335 +190,7 @@
             border-radius: 2px;
         }
 
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            align-items: start;
-            margin-bottom: 40px;
-        }
-
-        .about-sidebar {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-        }
-
-        .about-main {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-        }
-
-        .contact-info {
-            list-style: none;
-        }
-
-        .contact-info li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .contact-info i {
-            width: 20px;
-            color: #667eea;
-            margin-right: 10px;
-        }
-
-        .contact-info a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            color: #667eea;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f1f3f4;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category li:last-child {
-            border-bottom: none;
-        }
-
-        .skill-category i {
-            color: #28a745;
-            font-size: 12px;
-        }
-
-        /* Portfolio Section */
-        .portfolio-grid {
-            display: grid;
-            gap: 40px;
-        }
-
-        .case-study {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-
-        .case-study:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        }
-
-        .case-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 25px 30px;
-        }
-
-        .case-number {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-
-        .case-title {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .case-description {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .case-content {
-            padding: 30px;
-        }
-
-        .video-placeholder {
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-            height: 200px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            border: 2px dashed #dee2e6;
-            color: #6c757d;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .video-placeholder:hover {
-            background: linear-gradient(45deg, #e9ecef, #dee2e6);
-            color: #495057;
-        }
-
-        .artifacts {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .artifact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .artifact-link:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateY(-1px);
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #2d3748;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .contact-info-section {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link.linkedin {
-            background: #0077b5;
-        }
-
-        .social-link.github {
-            background: #333;
-        }
-
-        .social-link.telegram {
-            background: #0088cc;
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .nav-link {
-                padding: 15px 15px;
-            }
-
-            .about-content,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section.active {
-            animation: fadeInUp 0.6s ease;
-        }
-
-        /* Key Competencies */
+        /* === Компетенции (Home) === */
         .key-competencies {
             background: white;
             margin: 40px 0;
@@ -562,6 +232,229 @@
             color: white;
             font-size: 1.2rem;
         }
+
+        /* === About (Обо мне) === */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-sidebar, .about-main {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .contact-info i {
+            width: 20px;
+            color: #667eea;
+            margin-right: 10px;
+        }
+
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* === Skills (Навыки) === */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category ul { list-style: none; }
+
+        .skill-category li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category i { color: #28a745; font-size: 12px; }
+
+        /* === Portfolio (Портфолио) === */
+        .portfolio-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .case-study {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .case-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .case-number { font-size: 14px; opacity: 0.8; margin-bottom: 5px; }
+        .case-title { font-size: 1.4rem; margin-bottom: 10px; }
+        .case-description { font-size: 14px; opacity: 0.9; }
+
+        .case-content { padding: 30px; }
+
+        /* Контейнер для адаптивного видео (16:9) */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 20px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .artifacts {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .artifact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .artifact-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* === Contact (Контакты) === */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-form, .contact-info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link.linkedin { background: #0077b5; }
+        .social-link.github { background: #333; }
+        .social-link.telegram { background: #0088cc; }
+        .social-link:hover { transform: translateY(-3px); }
+
+        /* === Анимация === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === Адаптивность для мобильных === */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .nav-menu { flex-wrap: wrap; justify-content: center; }
+            .nav-link { padding: 15px; }
+            .about-content, .contact-grid, .skills-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
     </style>
 </head>
 <body>
@@ -573,7 +466,7 @@
             </div>
             <h1>Григорашенко Сергей</h1>
             <p class="subtitle">Junior QA Engineer</p>
-            <p>Создаю качественные продукты через вдумчивое тестирование. Наглядно демонстрирую свои навыки в поиске дефектов и улучшении пользовательского опыта.</p>
+            <p style="max-width: 700px; margin: 0 auto;">Создаю качественные продукты через вдумчивое тестирование. Наглядно демонстрирую свои навыки в поиске дефектов и улучшении пользовательского опыта.</p>
             
             <div class="cta-buttons">
                 <a href="#portfolio" class="btn btn-primary" onclick="showSection('portfolio')">
@@ -630,59 +523,42 @@
                     
                     <div class="competencies-grid">
                         <div class="competency-item">
-                            <div class="competency-icon">
-                                <i class="fas fa-sitemap"></i>
-                            </div>
+                            <div class="competency-icon"><i class="fas fa-sitemap"></i></div>
                             <div>
                                 <strong>Тест-дизайн</strong><br>
                                 <small>Классы эквивалентности, Граничные значения</small>
                             </div>
                         </div>
-                        
                         <div class="competency-item">
-                            <div class="competency-icon">
-                                <i class="fas fa-mouse-pointer"></i>
-                            </div>
+                            <div class="competency-icon"><i class="fas fa-mouse-pointer"></i></div>
                             <div>
                                 <strong>Ручное тестирование</strong><br>
                                 <small>Web и Mobile приложения</small>
                             </div>
                         </div>
-                        
                         <div class="competency-item">
-                            <div class="competency-icon">
-                                <i class="fas fa-exchange-alt"></i>
-                            </div>
+                            <div class="competency-icon"><i class="fas fa-exchange-alt"></i></div>
                             <div>
                                 <strong>API тестирование</strong><br>
                                 <small>Postman, REST API</small>
                             </div>
                         </div>
-                        
                         <div class="competency-item">
-                            <div class="competency-icon">
-                                <i class="fas fa-bug"></i>
-                            </div>
+                            <div class="competency-icon"><i class="fas fa-bug"></i></div>
                             <div>
                                 <strong>Баг-репорты</strong><br>
                                 <small>Jira, детальное описание</small>
                             </div>
                         </div>
-                        
                         <div class="competency-item">
-                            <div class="competency-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
+                            <div class="competency-icon"><i class="fas fa-tools"></i></div>
                             <div>
                                 <strong>DevTools & SQL</strong><br>
                                 <small>Chrome DevTools, базовые запросы</small>
                             </div>
                         </div>
-                        
                         <div class="competency-item">
-                            <div class="competency-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
+                            <div class="competency-icon"><i class="fas fa-mobile-alt"></i></div>
                             <div>
                                 <strong>Кросс-платформенное</strong><br>
                                 <small>Android, iOS, различные браузеры</small>
@@ -691,16 +567,16 @@
                     </div>
                 </div>
 
-                <!-- Video Introduction Placeholder -->
+                <!-- Video Introduction -->
                 <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.08); text-align: center; margin-top: 40px;">
                     <h3 style="margin-bottom: 20px; color: #2d3748;">Видео-приветствие</h3>
-<div class="video-container" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 20px;">
-    <iframe 
-        src="https://drive.google.com/file/d/13sDkwm7d4nbf2-vzynokAx1KTs8cCOGP/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
-        allow="autoplay">
-    </iframe>
-</div>                    <p style="color: #666; margin-top: 15px;">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://drive.google.com/file/d/13sDkwm7d4nbf2-vzynokAx1KTs8cCOGP/preview" 
+                            allow="autoplay">
+                        </iframe>
+                    </div>
+                    <p style="color: #666; margin-top: 15px;">
                         В этом видео я рассказываю о себе, своей мотивации и том, что вы найдете на этом сайте
                     </p>
                 </div>
@@ -711,33 +587,16 @@
         <section id="about" class="section">
             <div class="container">
                 <h2 class="section-title">Обо мне</h2>
-                
                 <div class="about-content">
                     <div class="about-sidebar">
                         <h3 style="margin-bottom: 20px; color: #2d3748;">Контактная информация</h3>
                         <ul class="contact-info">
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:sergeygrygorashenko@email.com">sergeygrygorashenko@email.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                <span>+380676966591</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Одесса, Украина</span>
-                            </li>
-                            <li>
-                                <i class="fab fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/sergey-grygorashenko-7b584ba6" target="_blank">LinkedIn профиль</a>
-                            </li>
-                            <li>
-                                <i class="fab fa-github"></i>
-                                <a href="https://github.com/Prozor1"_blank">GitHub профиль</a>
-                            </li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:sergeygrygorashenko@email.com">sergeygrygorashenko@email.com</a></li>
+                            <li><i class="fas fa-phone"></i><span>+380676966591</span></li>
+                            <li><i class="fas fa-map-marker-alt"></i><span>Одесса, Украина</span></li>
+                            <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/sergey-grygorashenko-7b584ba6" target="_blank">LinkedIn профиль</a></li>
+                            <li><i class="fab fa-github"></i><a href="https://github.com/Prozor1" target="_blank">GitHub профиль</a></li>
                         </ul>
-
                         <div style="margin-top: 30px;">
                             <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">
                                 <i class="fas fa-download"></i> Скачать резюме PDF
@@ -747,32 +606,15 @@
                     
                     <div class="about-main">
                         <h3 style="margin-bottom: 20px; color: #2d3748;">Немного о себе</h3>
-                        
                         <p style="margin-bottom: 20px;">
                             Привет! Меня зовут Сергей, и я начинающий QA-инженер с большим энтузиазмом к созданию качественных IT-продуктов. 
                             Имею техническое образование в области информационных технологий и опыт работы в смежных областях, 
                             что помогло развить аналитическое мышление и внимание к деталям.
                         </p>
-                        
                         <p style="margin-bottom: 20px;">
                             <strong>Почему тестирование?</strong><br>
                             Меня привлекает возможность быть тем человеком, который стоит на страже пользовательского опыта. 
                             Я получаю удовольствие от процесса поиска потенциальных проблем и предотвращения их попадания к конечным пользователям. 
-                            Тестирование требует системного подхода, креативности и внимательности — качества, которые я активно развиваю.
-                        </p>
-                        
-                        <h4 style="margin-bottom: 15px; color: #667eea;">Мои сильные стороны:</h4>
-                        <ul style="margin-left: 20px; margin-bottom: 20px;">
-                            <li><strong>Внимательность к деталям</strong> — умею замечать несоответствия и потенциальные проблемы</li>
-                            <li><strong>Аналитический склад ума</strong> — способен разложить сложные задачи на простые компоненты</li>
-                            <li><strong>Коммуникабельность</strong> — легко взаимодействую с командой разработки</li>
-                            <li><strong>Быстрая обучаемость</strong> — готов осваивать новые инструменты и технологии</li>
-                            <li><strong>Ответственность</strong> — понимаю важность качества в IT-продуктах</li>
-                        </ul>
-                        
-                        <p>
-                            Активно изучаю современные методологии тестирования, практикуюсь на реальных проектах и постоянно работаю над улучшением своих навыков. 
-                            Готов принести свежий взгляд и энергию в команду разработки!
                         </p>
                     </div>
                 </div>
@@ -783,65 +625,40 @@
         <section id="skills" class="section">
             <div class="container">
                 <h2 class="section-title">Мои навыки</h2>
-                
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>
-                            <i class="fas fa-brain"></i>
-                            Теория и тест-дизайн
-                        </h3>
+                        <h3><i class="fas fa-brain"></i>Теория и тест-дизайн</h3>
                         <ul>
                             <li><i class="fas fa-check"></i> Классы эквивалентности</li>
                             <li><i class="fas fa-check"></i> Граничные значения</li>
                             <li><i class="fas fa-check"></i> Таблицы принятия решений</li>
                             <li><i class="fas fa-check"></i> Тестирование состояний и переходов</li>
-                            <li><i class="fas fa-check"></i> Предугадывание ошибки</li>
-                            <li><i class="fas fa-check"></i> Причина-следствие диаграммы</li>
                         </ul>
                     </div>
-
                     <div class="skill-category">
-                        <h3>
-                            <i class="fas fa-list-check"></i>
-                            Типы тестирования
-                        </h3>
+                        <h3><i class="fas fa-list-check"></i>Типы тестирования</h3>
                         <ul>
                             <li><i class="fas fa-check"></i> Функциональное тестирование</li>
                             <li><i class="fas fa-check"></i> UI/UX тестирование</li>
                             <li><i class="fas fa-check"></i> Регрессионное тестирование</li>
                             <li><i class="fas fa-check"></i> Кросс-браузерное тестирование</li>
-                            <li><i class="fas fa-check"></i> Тестирование производительности (базовое)</li>
-                            <li><i class="fas fa-check"></i> Тестирование безопасности (базовое)</li>
                         </ul>
                     </div>
-
                     <div class="skill-category">
-                        <h3>
-                            <i class="fas fa-tools"></i>
-                            Инструменты и технологии
-                        </h3>
+                        <h3><i class="fas fa-tools"></i>Инструменты и технологии</h3>
                         <ul>
-                            <li><i class="fas fa-check"></i> <strong>Баг-трекинг:</strong> Jira, Trello</li>
-                            <li><i class="fas fa-check"></i> <strong>Тест-документация:</strong> TestRail, Confluence</li>
-                            <li><i class="fas fa-check"></i> <strong>API тестирование:</strong> Postman</li>
-                            <li><i class="fas fa-check"></i> <strong>Базы данных:</strong> MySQL, PostgreSQL (SELECT, JOIN)</li>
-                            <li><i class="fas fa-check"></i> <strong>DevTools:</strong> Chrome DevTools, Firefox DevTools</li>
-                            <li><i class="fas fa-check"></i> <strong>Mobile:</strong> Android Studio, Xcode Simulator</li>
+                            <li><i class="fas fa-check"></i> <strong>Jira, Trello</strong></li>
+                            <li><i class="fas fa-check"></i> <strong>Postman (API)</strong></li>
+                            <li><i class="fas fa-check"></i> <strong>MySQL, PostgreSQL</strong></li>
+                            <li><i class="fas fa-check"></i> <strong>DevTools</strong></li>
                         </ul>
                     </div>
-
                     <div class="skill-category">
-                        <h3>
-                            <i class="fas fa-code"></i>
-                            Дополнительные навыки
-                        </h3>
+                        <h3><i class="fas fa-code"></i>Дополнительные навыки</h3>
                         <ul>
-                            <li><i class="fas fa-check"></i> HTML/CSS (базовое понимание)</li>
-                            <li><i class="fas fa-check"></i> HTTP/HTTPS протоколы</li>
-                            <li><i class="fas fa-check"></i> Git/GitHub (базовые команды)</li>
-                            <li><i class="fas fa-check"></i> Agile/Scrum методологии</li>
-                            <li><i class="fas fa-check"></i> Создание тестовой документации</li>
-                            <li><i class="fas fa-check"></i> Анализ требований</li>
+                            <li><i class="fas fa-check"></i> HTML/CSS</li>
+                            <li><i class="fas fa-check"></i> Git/GitHub</li>
+                            <li><i class="fas fa-check"></i> Agile/Scrum</li>
                         </ul>
                     </div>
                 </div>
@@ -852,38 +669,25 @@
         <section id="portfolio" class="section">
             <div class="container">
                 <h2 class="section-title">Портфолио (Практика)</h2>
-                
                 <div class="portfolio-grid">
-                   <!-- Case Study 1 -->
+                    
+                    <!-- Case Study 1 -->
                     <div class="case-study">
                         <div class="case-header">
                             <div class="case-number">Кейс №1</div>
                             <h3 class="case-title">NEWMAN: АВТОМАТИЗАЦИЯ POSTMAN</h3>
-                            <p class="case-description">
-                                Как запустить 100 тестов одной командой и получить HTML-отчет
-                            </p>
+                            <p class="case-description">Как запустить 100 тестов одной командой и получить HTML-отчет</p>
                         </div>
                         <div class="case-content">
-                            <!-- Вставка видео с Google Диска -->
-                            <div class="video-container" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 20px;">
+                            <div class="video-container">
                                 <iframe 
                                     src="https://drive.google.com/file/d/1j1GEHlB6BugM7PDgSQoLcf84zfQ8ah-0/preview" 
-                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
                                     allow="autoplay">
                                 </iframe>
                             </div>
-
-                           
-                            
                             <div class="artifacts">
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-file-code"></i>
-                                    Коллекция Postman
-                                </a>
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-chart-bar"></i>
-                                    Пример HTML-отчета
-                                </a>
+                                <a href="#" class="artifact-link"><i class="fas fa-file-code"></i> Коллекция Postman</a>
+                                <a href="#" class="artifact-link"><i class="fas fa-chart-bar"></i> Пример HTML-отчета</a>
                             </div>
                         </div>
                     </div>
@@ -893,48 +697,19 @@
                         <div class="case-header">
                             <div class="case-number">Кейс №2</div>
                             <h3 class="case-title">Запустил, проверил, удалил: Docker для QA</h3>
-                            <p class="case-description">
-                                Основы работы с контейнерами для быстрого развертывания тестового окружения
-                            </p>
+                            <p class="case-description">Основы работы с контейнерами для быстрого развертывания тестового окружения</p>
                         </div>
                         <div class="case-content">
-                            <!-- Видео Docker -->
-                            <div class="video-container" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 20px;">
+                            <div class="video-container">
                                 <iframe 
                                     src="https://drive.google.com/file/d/1aECnxiUwNs12-jYstGO5juYjTw5Lfp8j/preview" 
-                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
                                     allow="autoplay">
                                 </iframe>
                             </div>
-
-                            <p>В этом видео показываю, как QA-инженер может использовать Docker в работе: поднимаем изолированное окружение, запускаем контейнер, проводим тесты и "убираем за собой", удаляя контейнер.</p>
-                            
+                            <p>В этом видео показываю, как QA-инженер может использовать Docker в работе.</p>
                             <div class="artifacts">
-                                <a href="#" class="artifact-link">
-                                    <i class="fab fa-docker"></i>
-                                    Список команд Docker
-                                </a>
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-terminal"></i>
-                                    Логи контейнера
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                            
-                           
-                            
-                            <div class="artifacts">
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-bug"></i>
-                                    Баг-репорты в Jira
-                                </a>
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-clipboard-check"></i>
-                                    Тест-план
-                                </a>
+                                <a href="#" class="artifact-link"><i class="fab fa-docker"></i> Список команд Docker</a>
+                                <a href="#" class="artifact-link"><i class="fas fa-terminal"></i> Логи контейнера</a>
                             </div>
                         </div>
                     </div>
@@ -944,28 +719,18 @@
                         <div class="case-header">
                             <div class="case-number">Кейс №3</div>
                             <h3 class="case-title">Таблица принятия решений</h3>
-                            <p class="case-description">
-                                Практическое применение таблиц принятия решений
-                            </p>
+                            <p class="case-description">Практическое применение таблиц принятия решений</p>
                         </div>
-                        <div class="video-container" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 20px;">
-    <iframe 
-        src="https://drive.google.com/file/d/18moTyxL-VPFUzsNJlE4mCYmGeUQWxuYY/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
-        allow="autoplay">
-    </iframe>
-</div>
+                        <div class="case-content">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://drive.google.com/file/d/18moTyxL-VPFUzsNJlE4mCYmGeUQWxuYY/preview" 
+                                    allow="autoplay">
+                                </iframe>
+                            </div>
                             <p>Показываю как тестировать с помощью таблиц принятия решений.</p>
-                            
                             <div class="artifacts">
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-code"></i>
-                                    Postman коллекция
-                                </a>
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-file-code"></i>
-                                    Примеры запросов
-                                </a>
+                                <a href="#" class="artifact-link"><i class="fas fa-table"></i> Таблица решений</a>
                             </div>
                         </div>
                     </div>
@@ -975,31 +740,22 @@
                         <div class="case-header">
                             <div class="case-number">Кейс №4</div>
                             <h3 class="case-title">Попарное тестирование</h3>
-                            <p class="case-description">
-                                Демонстрация попарного тестирования
-                            </p>
+                            <p class="case-description">Демонстрация попарного тестирования</p>
                         </div>
-                        <div class="video-container" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin-bottom: 20px;">
-    <iframe 
-        src="https://drive.google.com/file/d/1OUtV_plxZZYtF58eD0NFqN7FD1SaD8qg/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
-        allow="autoplay">
-    </iframe>
-</div>
+                        <div class="case-content">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://drive.google.com/file/d/1OUtV_plxZZYtF58eD0NFqN7FD1SaD8qg/preview" 
+                                    allow="autoplay">
+                                </iframe>
+                            </div>
                             <p>Демонстрирую тестирование с помощью техники попарного тестирования.</p>
-                            
                             <div class="artifacts">
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    Чек-лист мобильного тестирования
-                                </a>
-                                <a href="#" class="artifact-link">
-                                    <i class="fas fa-image"></i>
-                                    Скриншоты найденных багов
-                                </a>
+                                <a href="#" class="artifact-link"><i class="fas fa-list-ol"></i> Pairwise таблица</a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -1008,76 +764,40 @@
         <section id="contact" class="section">
             <div class="container">
                 <h2 class="section-title">Связаться со мной</h2>
-                
                 <div class="contact-grid">
                     <div class="contact-form">
                         <h3 style="margin-bottom: 20px;">Напишите мне</h3>
-                        
                         <form>
                             <div class="form-group">
                                 <label for="name">Ваше имя</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">Тема</label>
-                                <input type="text" id="subject" name="subject">
-                            </div>
-                            
                             <div class="form-group">
                                 <label for="message">Сообщение</label>
                                 <textarea id="message" name="message" required></textarea>
                             </div>
-                            
                             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                                <i class="fas fa-paper-plane"></i>
-                                Отправить сообщение
+                                <i class="fas fa-paper-plane"></i> Отправить сообщение
                             </button>
                         </form>
                     </div>
                     
                     <div class="contact-info-section">
                         <h3 style="margin-bottom: 20px;">Контактная информация</h3>
-                        
                         <ul class="contact-info">
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:sergeygrygorashenko@gmail.com">sergeygrygorashenko@gmail.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                <span>+380676966591</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Одесса, Украина</span>
-                            </li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:sergeygrygorashenko@gmail.com">sergeygrygorashenko@gmail.com</a></li>
+                            <li><i class="fas fa-phone"></i><span>+380676966591</span></li>
+                            <li><i class="fas fa-map-marker-alt"></i><span>Одесса, Украина</span></li>
                         </ul>
-                        
                         <h4 style="margin: 30px 0 15px; color: #667eea;">Социальные сети</h4>
                         <div class="social-links">
-                            <a href="https://www.linkedin.com/in/sergey-grygorashenko-7b584ba6" class="social-link linkedin" target="_blank" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/Prozor1" class="social-link github" target="_blank" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://t.me/RTQAlity1" class="social-link telegram" target="_blank" title="Telegram">
-                                <i class="fab fa-telegram-plane"></i>
-                            </a>
-                        </div>
-                        
-                        <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                            <h4 style="color: #667eea; margin-bottom: 10px;">Готов к собеседованию!</h4>
-                            <p style="font-size: 14px; color: #666;">
-                                Открыт для новых возможностей в области QA. 
-                                Готов обсудить как мой опыт может помочь вашей команде.
-                            </p>
+                            <a href="https://www.linkedin.com/in/sergey-grygorashenko-7b584ba6" class="social-link linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/Prozor1" class="social-link github" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://t.me/RTQAlity1" class="social-link telegram" target="_blank"><i class="fab fa-telegram-plane"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1087,40 +807,30 @@
 
     <!-- JavaScript -->
     <script>
-        // Navigation functionality
+        // Функция переключения секций
         function showSection(sectionName) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
+            // Скрыть все секции
+            document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
-            
-            // Remove active class from all nav links
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
+            // Убрать подсветку меню
+            document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Show selected section
+            // Показать нужную секцию
             const targetSection = document.getElementById(sectionName);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+            if (targetSection) targetSection.classList.add('active');
             
-            // Add active class to clicked nav link
+            // Подсветить пункт меню
             const targetNavLink = document.querySelector(`[href="#${sectionName}"]`);
-            if (targetNavLink) {
-                targetNavLink.classList.add('active');
-            }
+            if (targetNavLink) targetNavLink.classList.add('active');
             
-            // Scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            // Скролл вверх
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // Smooth scrolling for anchor links
+        // Обработка кликов по меню
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1129,29 +839,10 @@
             });
         });
         
-        // Form submission handler
+        // Заглушка отправки формы
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Форма отправлена! (В реальном проекте здесь будет обработка формы)');
-        });
-        
-        // Video placeholder click handlers
-        document.querySelectorAll('.video-placeholder').forEach(placeholder => {
-            placeholder.addEventListener('click', function() {
-                // Здесь будут ваши реальные ссылки на Google Drive видео
-                alert('Здесь будет открываться ваше видео из Google Drive');
-            });
-        });
-        
-        // Add some interactivity to competency items
-        document.querySelectorAll('.competency-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
+            alert('Форма отправлена! (Это демо-версия)');
         });
     </script>
 </body>
